@@ -620,7 +620,7 @@
   @media (max-width: 480px) {
     .hero-name { font-size: clamp(48px, 13vw, 64px); }
     .hero-subtitle { font-size: 15px; }
-    .hero-cta { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .hero-cta { flex-direction: row; flex-wrap: wrap; gap: 12px; }
     .stat-box { padding: 20px 16px; }
     .stat-num { font-size: 36px; }
     .stat-num[style] { font-size: 28px !important; }
@@ -631,9 +631,14 @@
     .strength-item { border-right: none !important; padding: 28px 24px; }
     .strength-item:last-child { border-bottom: none; }
     .strength-rank { font-size: 24px; }
+    /* 강점 폰트: 1열이므로 원래 크기로 복원 */
+    .strength-name { font-size: 15px; }
+    .strength-desc { font-size: 14px; }
     .exp-company { font-size: 18px; }
-    .project-card { padding: 32px 20px; }
+    /* 프로젝트 카드: 1열 전체폭이므로 overflow 해제 */
+    .project-card { padding: 32px 20px; overflow: visible; }
     .project-title { font-size: 19px; }
+    .project-desc { word-break: keep-all; }
     .contact-headline { font-size: clamp(24px, 7vw, 36px); }
   }
 </style>
