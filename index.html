@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이진영 — Brand Marketing Strategist</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1C252B;
+    --paper: #FAFBFD;
+    --accent: #0F74C7;
+    --mid: #7A8A94;
+    --rule: rgba(28,37,43,0.09);
+    --font: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'DM Mono', monospace;
+    --italic: 'Lora', Georgia, serif;
+
+    /* Tag category colors — 절제된 먹컬러 팔레트 */
+    --tag-strategy:   #C8D8E8;  /* 연 스틸 블루 — 전략·브랜딩 */
+    --tag-campaign:   #F0D9C8;  /* 웜 피치 — 캠페인·ATL/BTL */
+    --tag-digital:    #C6DDD3;  /* 세이지 그린 — 디지털·커머스 */
+    --tag-experience: #DDD5E8;  /* 소프트 라벤더 — BX·경험 */
+    --tag-content:    #EDE8C8;  /* 크림 옐로 — 콘텐츠·PPL */
+    --tag-ops:        #D5DDE0;  /* 뉴트럴 슬레이트 — 운영 */
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    backdrop-filter: blur(4px);
+  }
+  .nav-name {
+    font-family: var(--font); font-weight: 700; font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .hero-left {
+    padding: 80px 48px 80px 48px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    border-right: 1px solid var(--rule);
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--mid);
+    margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-name {
+    font-family: var(--font); font-size: clamp(64px, 9vw, 128px);
+    font-weight: 900; line-height: 1;
+    letter-spacing: -0.04em;
+    opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+    color: var(--ink);
+  }
+  .hero-subtitle {
+    margin-top: 32px;
+    font-family: var(--font); font-size: 17px; font-weight: 400;
+    color: var(--mid); line-height: 1.8;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .hero-cta {
+    margin-top: 48px;
+    display: flex; gap: 16px; align-items: center;
+    opacity: 0; animation: fadeUp 0.8s 0.65s forwards;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--paper);
+    padding: 14px 28px; font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost {
+    color: var(--ink); font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+
+  .hero-right {
+    padding: 80px 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    border: 1px solid var(--rule); margin-top: auto;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .stat-box {
+    padding: 28px 32px; border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;
+  }
+  .stat-box:nth-child(2n) { border-right: none; }
+  .stat-box:nth-child(3), .stat-box:nth-child(4) { border-bottom: none; }
+  .stat-num {
+    font-family: var(--font); font-size: 44px; font-weight: 900;
+    color: var(--accent); line-height: 1; letter-spacing: -0.03em;
+  }
+  .stat-num sup {
+    font-size: 22px; vertical-align: super; letter-spacing: 0;
+  }
+  .stat-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--mid); line-height: 1.5;
+  }
+
+  .hero-brands {
+    margin-top: 48px;
+    opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+  }
+  .brands-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--mid); margin-bottom: 16px;
+  }
+  .brands-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .brand-tag {
+    padding: 6px 14px; border: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    color: var(--mid); background: transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .brand-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── SECTION BASE ── */
+  section { border-bottom: 1px solid var(--rule); }
+  .section-header {
+    display: flex; align-items: baseline; gap: 24px;
+    padding: 48px 48px 0;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 24px;
+  }
+  .section-num {
+    font-family: var(--mono); font-size: 11px; color: var(--mid);
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: var(--font); font-size: 32px; font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── STRENGTHS ── */
+  #strengths .strengths-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--rule);
+  }
+  .strength-item {
+    padding: 40px 32px;
+    border-right: 1px solid var(--rule);
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .strength-item:last-child { border-right: none; }
+  .strength-item:hover { background: var(--ink); }
+  .strength-item:hover .strength-rank,
+  .strength-item:hover .strength-name,
+  .strength-item:hover .strength-desc { color: var(--paper); }
+  .strength-rank {
+    font-family: var(--mono); font-size: 32px; font-weight: 500;
+    color: var(--accent); transition: color 0.3s;
+  }
+  .strength-name {
+    font-family: var(--font); font-size: 15px; font-weight: 700;
+    margin: 12px 0 8px; transition: color 0.3s; letter-spacing: -0.01em;
+    word-break: keep-all;
+  }
+  .strength-desc {
+    font-family: var(--font); font-size: 13px; color: var(--mid); line-height: 1.65;
+    transition: color 0.3s; word-break: keep-all; overflow-wrap: break-word;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience .exp-list { padding: 0 48px; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 48px; padding: 48px 0;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .exp-item.visible { opacity: 1; transform: none; }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-meta { padding-top: 4px; }
+  .exp-period {
+    font-family: var(--mono); font-size: 11px; color: var(--mid);
+    letter-spacing: 0.08em; margin-bottom: 8px;
+  }
+  .exp-company {
+    font-family: var(--font); font-size: 20px; font-weight: 700;
+    line-height: 1.3; margin-bottom: 4px;
+  }
+  .exp-title {
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .exp-content h4 {
+    font-family: var(--font); font-size: 18px; font-weight: 700;
+    margin-bottom: 16px; line-height: 1.5;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  .exp-content h4 .client-name {
+    display: block; font-size: 20px; font-weight: 800;
+    letter-spacing: -0.02em; color: var(--ink); margin-bottom: 2px;
+  }
+  .exp-content h4 .client-desc {
+    display: block; font-size: 14px; font-weight: 400;
+    color: var(--mid); letter-spacing: 0;
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .exp-tag {
+    padding: 4px 11px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em;
+    border-radius: 2px; font-weight: 500;
+    color: var(--ink);
+  }
+  /* 카테고리별 태그 컬러 */
+  .tag-strategy   { background: var(--tag-strategy); color: var(--ink); }
+  .tag-campaign   { background: var(--tag-campaign); color: var(--ink); }
+  .tag-digital    { background: var(--tag-digital);  color: var(--ink); }
+  .tag-experience { background: var(--tag-experience); color: var(--ink); }
+  .tag-content    { background: var(--tag-content);  color: var(--ink); }
+  .tag-ops        { background: var(--tag-ops);      color: var(--ink); }
+
+  /* 범례 */
+  .tag-legend {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    padding: 20px 48px; border-bottom: 1px solid var(--rule);
+    background: rgba(28,37,43,0.025);
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 10px; color: var(--mid);
+    letter-spacing: 0.06em;
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-family: var(--font);
+    padding: 8px 0; border-top: 1px solid var(--rule);
+    font-size: 14px; color: var(--mid); line-height: 1.7;
+    padding-left: 16px; position: relative;
+  }
+  .exp-bullets li::before {
+    content: '—'; position: absolute; left: 0; color: var(--accent);
+  }
+
+  /* ── KEY PROJECTS ── */
+  #projects .projects-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--rule);
+  }
+  .project-card {
+    padding: 56px 48px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative; overflow: hidden;
+    transition: background 0.4s;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s, background 0.4s;
+  }
+  .project-card.visible { opacity: 1; transform: none; }
+  .project-card:nth-child(2n) { border-right: none; }
+  .project-card:nth-child(3), .project-card:nth-child(4) { border-bottom: none; }
+  .project-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 3px; height: 0;
+    background: var(--accent);
+    transition: height 0.4s;
+  }
+  .project-card:hover::before { height: 100%; }
+  .project-card:hover { background: rgba(26,59,255,0.03); }
+  .project-num {
+    font-family: var(--mono); font-size: 11px; color: var(--mid);
+    letter-spacing: 0.1em; margin-bottom: 24px;
+  }
+  .project-client {
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .project-title {
+    font-family: var(--font); font-size: 22px; font-weight: 800;
+    line-height: 1.35; margin-bottom: 20px; letter-spacing: -0.01em;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  .project-desc {
+    font-family: var(--font); font-size: 14px; color: var(--mid); line-height: 1.8;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  .project-result {
+    margin-top: 24px; padding: 16px;
+    border: 1px solid var(--rule);
+    font-family: var(--font); font-size: 12px; color: var(--ink);
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  .project-result strong {
+    font-family: var(--font); color: var(--accent); font-size: 20px;
+    display: block; font-weight: 800; letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  /* ── AWARDS ── */
+  #awards .awards-list { padding: 0 48px; }
+  .award-item {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 32px; padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: center;
+  }
+  .award-item:last-child { border-bottom: none; }
+  .award-year {
+    font-family: var(--mono); font-size: 14px; color: var(--accent);
+    font-weight: 500;
+  }
+  .award-name {
+    font-family: var(--font); font-size: 16px; font-weight: 500;
+  }
+  .award-campaign {
+    font-family: var(--font); font-size: 13px; color: var(--mid); margin-top: 2px;
+  }
+  .award-badge {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 6px 12px;
+    border: 1px solid var(--rule); color: var(--mid); white-space: nowrap;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+  }
+  .contact-left {
+    padding: 80px 48px;
+    background: var(--ink); color: var(--paper);
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .contact-left .section-title { color: var(--paper); }
+  .contact-headline {
+    font-family: var(--font); font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 900; line-height: 1.15;
+    margin: 32px 0; letter-spacing: -0.02em;
+    color: var(--paper);
+  }
+  .contact-headline em { color: var(--accent); font-style: normal; }
+  .contact-right {
+    padding: 80px 48px;
+    display: flex; flex-direction: column; justify-content: center; gap: 28px;
+  }
+  .contact-item {}
+  .contact-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--mid); margin-bottom: 6px;
+  }
+  .contact-value {
+    font-family: var(--font); font-size: 16px; font-weight: 500;
+    color: var(--ink);
+  }
+  /* 클릭 reveal 버튼 */
+  .reveal-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; background: transparent;
+    border: 1px solid var(--rule); cursor: pointer;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+    color: var(--mid); transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .reveal-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .reveal-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .reveal-text {
+    font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--ink);
+    display: none;
+  }
+  .reveal-text.shown { display: inline; }
+  .reveal-text a { color: inherit; text-decoration: none; }
+  .reveal-text a:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--rule);
+  }
+  footer p {
+    font-family: var(--mono); font-size: 10px; color: var(--mid);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SCROLL TO TOP ── */
+  #scroll-top {
+    position: fixed; bottom: 32px; right: 32px; z-index: 200;
+    width: 48px; height: 48px;
+    background: var(--ink); color: var(--paper);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, background 0.2s, transform 0.2s;
+  }
+  #scroll-top.visible { opacity: 1; pointer-events: all; }
+  #scroll-top:hover { background: var(--accent); transform: translateY(-3px); }
+  #scroll-top svg { width: 18px; height: 18px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--ink); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 16px; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 48px 24px; border-right: none; }
+    .hero-right { padding: 48px 24px; }
+    #strengths .strengths-grid { grid-template-columns: 1fr 1fr; }
+    .strength-item:nth-child(2) { border-right: none; }
+    .strength-item { border-bottom: 1px solid var(--rule); }
+    .exp-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 24px; }
+    .section-header { padding: 32px 24px 20px; }
+    #experience .exp-list { padding: 0 24px; }
+    #projects .projects-grid { grid-template-columns: 1fr; }
+    .project-card { border-right: none !important; }
+    .project-card:last-child { border-bottom: none; }
+    #awards .awards-list { padding: 0 24px; }
+    .award-item { grid-template-columns: 60px 1fr; }
+    .award-badge { display: none; }
+    #contact { grid-template-columns: 1fr; }
+    .contact-left { padding: 48px 24px; }
+    .contact-right { padding: 48px 24px; }
+    footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">이진영</div>
+  <div class="nav-links">
+    <a href="#strengths">강점</a>
+    <a href="#experience">경력</a>
+    <a href="#projects">프로젝트</a>
+    <a href="#awards">수상</a>
+    <a href="#contact">연락처</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Brand Marketing Strategist · 14+ Years</div>
+    <h1 class="hero-name">이진영</h1>
+    <p class="hero-subtitle">
+      14년의 브랜드 마케팅, 전략에서 실행까지
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">연락하기</a>
+      <a href="#experience" class="btn-ghost">경력 보기 →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-brands">
+      <p class="brands-label">주요 클라이언트</p>
+      <div class="brands-list">
+        <span class="brand-tag">동서식품 카누</span>
+        <span class="brand-tag">한국 맥도날드</span>
+        <span class="brand-tag">한국투자증권</span>
+        <span class="brand-tag">LG생활건강</span>
+        <span class="brand-tag">기아자동차</span>
+        <span class="brand-tag">E1</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">14<sup>+</sup></div>
+        <div class="stat-label">Years Brand<br>Marketing</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">10<sup>+</sup></div>
+        <div class="stat-label">Years Mega<br>Brand Accounts</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Campaign<br>Awards</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" style="font-size:38px;letter-spacing:-0.02em">E2E</div>
+        <div class="stat-label">Brand Marketing<br>Ownership</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section id="strengths">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">CliftonStrengths Top 5 <em style="font-family:var(--italic);font-weight:400;font-size:0.75em;letter-spacing:0;color:var(--mid);">by Gallup</em></h2>
+  </div>
+  <div class="strengths-grid">
+    <div class="strength-item">
+      <div class="strength-rank">#1</div>
+      <div class="strength-name">Input · 수집</div>
+      <div class="strength-desc">광고주 산업·소비자 트렌드·경쟁 환경을 지속적으로 흡수하여 광고주별 맞춤형 커뮤니케이션 방향을 도출합니다.</div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-rank">#2</div>
+      <div class="strength-name">Intellection · 지적 사고</div>
+      <div class="strength-desc">광고주 목표·시장 데이터·소비자 맥락을 교차 분석해 전략 논리를 스스로 구조화합니다. 근거 있는 내러티브를 만드는 방식으로 일합니다.</div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-rank">#3</div>
+      <div class="strength-name">Responsibility · 책임</div>
+      <div class="strength-desc">말은 일은 반드시 완성도 있게 마무리합니다. 중간에 타협하지 않는 실행 태도가 클라이언트 신뢰의 기반입니다.</div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-rank">#4</div>
+      <div class="strength-name">Deliberative · 심사숙고</div>
+      <div class="strength-desc">실행 전에 발생 가능한 변수를 먼저 따집니다. 꼼꼼한 사전 검토가 리스크를 줄이고 실행 단계에서 불필요한 수정을 최소화합니다.</div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-rank">#5</div>
+      <div class="strength-name">Relator · 관계 구축</div>
+      <div class="strength-desc">한번 맺은 관계를 깊게 유지하는 성향입니다. 광고주와 오래 일할수록 더 솔직한 대화가 가능해지고, 그 신뢰가 더 나은 결과물로 이어집니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">경력</h2>
+  </div>
+  <div class="tag-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--tag-strategy)"></div>전략 · 브랜딩</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--tag-campaign)"></div>캠페인 · ATL/BTL</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--tag-digital)"></div>디지털 · 커머스</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--tag-experience)"></div>BX · 오프라인 경험</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--tag-content)"></div>콘텐츠 · PPL · 미디어</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--tag-ops)"></div>운영 · 머천다이징</div>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">2022.04 — 현재</div>
+        <div class="exp-company">제일기획</div>
+        <div class="exp-title">Sr. Account Manager</div>
+      </div>
+      <div class="exp-content">
+        <h4><span class="client-name">동서식품 카누</span><span class="client-desc">마스터브랜드 전략부터 디지털 커머스까지 전방위 오너십</span></h4>
+        <div class="exp-tags">
+          <span class="exp-tag tag-strategy">Brand Strategy</span>
+          <span class="exp-tag tag-experience">Brand Experience</span>
+          <span class="exp-tag tag-digital">Digital Commerce</span>
+          <span class="exp-tag tag-content">PPL·Branded Content</span>
+          <span class="exp-tag tag-digital">GEO Strategy</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>마스터브랜드 캠페인 연계 및 마케팅 비즈니스 로드맵 방향 설정을 위한 워크샵 수행</li>
+          <li>대형 팝업(카누 하우스) 및 카누 바리스타 챔피언십 등 복합 BX 공간 기획·운영 End-to-End 리드</li>
+          <li>소비자 연상 맥락조사 데이터 분석 기반 공감각적 커뮤니케이션 가이드라인 및 내러티브 컨설팅</li>
+          <li>오프라인 중심 유통 구조 보완을 위한 디지털 커머스 전환 방향성 선제안 및 이커머스 다각화 전략 실행</li>
+          <li>AI 검색 환경 변화에 대응하는 브랜드 GEO 전략 구축 및 검색 접점 관리</li>
+          <li>실무 생산성 혁신을 위한 AI 기반 앱 기획 및 사내 TF 베타 테스트 진행</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">2016.05 — 2022.04</div>
+        <div class="exp-company">레오버넷<br>코리아</div>
+        <div class="exp-title">Account Director</div>
+      </div>
+      <div class="exp-content">
+        <h4><span class="client-name">한국 맥도날드</span><span class="client-desc">6년간 전 카테고리 통합 캠페인 파트너십</span></h4>
+        <div class="exp-tags">
+          <span class="exp-tag tag-campaign">ATL/BTL Campaign</span>
+          <span class="exp-tag tag-campaign">TVC Production</span>
+          <span class="exp-tag tag-ops">Merchandising</span>
+          <span class="exp-tag tag-experience">Olympic Sponsorship</span>
+          <span class="exp-tag tag-strategy">ESG Marketing</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>빅맥송, 베스트 버거, 맥런치 등 핵심 제품 전 카테고리 플랫폼 캠페인 리드</li>
+          <li>'행운버거' 사회공헌 캠페인 전환 제안으로 Brand Affinity 제고와 매출 성장을 동시에 견인</li>
+          <li>전국 410여 개 매장 머천다이징 및 디지털 메뉴보드 POP 가이드라인 수립, 신규 글로벌 키오스크 시스템 국내 런칭 리드</li>
+          <li>2018 평창 동계 올림픽 공식 스폰서십 가이드라인 관리 및 IOC·OBS 커뮤니케이션 다이렉트 담당</li>
+          <li>맥도날드 Asian Business Unit 리뷰를 위한 국/영문 카피라이팅 번역, 영문 리포트 작성</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">2015.05 — 2016.05</div>
+        <div class="exp-company">덴츠 코리아</div>
+        <div class="exp-title">Account Executive</div>
+      </div>
+      <div class="exp-content">
+        <h4><span class="client-name">한국투자증권 뱅키스 · 고세 코리아</span><span class="client-desc">브랜딩 전략 및 디지털 캠페인 기획</span></h4>
+        <div class="exp-tags">
+          <span class="exp-tag tag-strategy">Brand Campaign</span>
+          <span class="exp-tag tag-digital">Digital</span>
+          <span class="exp-tag tag-campaign">New Business</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>한국투자증권 뱅키스 브랜드 중장기 캠페인 전략 및 TVC '서른살의 플랜B' 기획</li>
+          <li>코스메데코르테 리포솜 미라클 캠페인 — 마이크로 사이트 기획 및 대규모 디지털 샘플링 프로모션</li>
+          <li>캐논 코리아, 우리카드 등 신규 광고주 경쟁 Pitch 수주</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">2012.01 — 2015.04</div>
+        <div class="exp-company">휘닉스<br>커뮤니케이션즈</div>
+        <div class="exp-title">Account Executive</div>
+      </div>
+      <div class="exp-content">
+        <h4><span class="client-name">LG생활건강 · 기아자동차 · E1</span><span class="client-desc">다양한 카테고리 IMC 캠페인</span></h4>
+        <div class="exp-tags">
+          <span class="exp-tag tag-campaign">IMC Campaign</span>
+          <span class="exp-tag tag-campaign">TVC</span>
+          <span class="exp-tag tag-content">Media Mix</span>
+          <span class="exp-tag tag-strategy">Brand Identity</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>LG생활건강 더페이스샵 기초/색조 제품 IMC 및 브랜딩 기획 — TVC, 지면 광고, 애드버토리얼 기획·제작</li>
+          <li>기아자동차 K7, K9 프리미엄 라인업 SBS 8 뉴스 맞춤형 미디어 믹스 광고 제작</li>
+          <li>E1 '대한민국 LPG' 통합 기업 PR 캠페인 기획 및 브랜드 모델 김연아 활용 디지털 바이럴 콘텐츠</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KEY PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">핵심 프로젝트</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 01</div>
+      <div class="project-client">동서식품 카누</div>
+      <h3 class="project-title">대형 BX 공간 설계 · 복합<br>페스티벌 오퍼레이션 E2E</h3>
+      <p class="project-desc">
+        카누 하우스, 카누 바리스타 챔피언십, 워케이션 카페 등 마스터브랜드 세계관 기반 타깃별 공간을 기획하고 온·오프라인 복합 오퍼레이션을 리드. 실시간 라이브 스트리밍 송출까지 통합 운영.
+      </p>
+      <div class="project-result">
+        <strong>KPI 45%+ 초과 달성</strong>
+        3회 연속 개최로 브랜드 연례 플랫폼화 — 시즌마다 브랜드에 생동감을 불어넣는 고정 접점으로 자리잡음. 챔피언십 실시간 최고 동시 접속자 2개년 합산 22,528명.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 02</div>
+      <div class="project-client">동서식품 카누</div>
+      <h3 class="project-title">소비자 인사이트 기반<br>세일즈 내러티브 개발</h3>
+      <p class="project-desc">
+        신제품 출시 전 소비자 연상 맥락조사 데이터의 다각적 분석을 통해 핵심 갭 발견. 맛을 연상시키는 오감 표현 중심으로 투 트랙 커뮤니케이션 전략 및 9개 카테고리 공감각적 내러티브 가이드라인 설계. 디지털 커머스 채널 상세페이지까지 반영.
+      </p>
+      <div class="project-result">
+        <strong>Data → Story</strong>
+        추상적 브랜드 가치를 광고주가 납득할 수 있는 구조화된 메시지 계층으로 설계
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 03</div>
+      <div class="project-client">한국 맥도날드</div>
+      <h3 class="project-title">인사이트 기반 캠페인으로<br>브랜드 호감과 매출을 동시에</h3>
+      <p class="project-desc">
+        소셜 리스닝과 정성 리서치로 시즌별 트렌드·경쟁 환경·소비자 관찰 데이터를 교차 분석해 캠페인 Core Idea를 정의. TVC(ATL)·디지털·소셜·소비자 참여형 캠페인을 단일 내러티브로 관통하는 채널별 콘텐츠를 설계하고, 전 카테고리 플랫폼 캠페인을 리드. 소비자 인사이트 기반의 선제적 전략 제안이 실제 캠페인으로 이어지면서 광고주의 마케팅 전략 수립 단계부터 참여하는 파트너 관계로 발전.
+      </p>
+      <div class="project-result">
+        <strong>Brand + Sales 동시 성과</strong>
+        '행운버거' 사회공헌 캠페인 전환 제안으로 Brand Affinity 제고와 매출 성장을 함께 견인. 브랜드 이미지와 비즈니스 목표를 하나의 전략으로 연결한 사례.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 04</div>
+      <div class="project-client">제일기획 (사내 혁신)</div>
+      <h3 class="project-title">AI 기반 실무 자동화 앱 개발 &<br>사내 TF 참여</h3>
+      <p class="project-desc">
+        대행사–파트너사 간 비즈니스 운영 효율화와 데이터 자산화를 위한 AI 컨택트리포팅 앱 개발 중. 생성형 AI 기술을 접목한 자동화 툴 설계 및 사내 TF 참여. 실무 프로세스 최적화 가능성을 검증하고 시스템 기반 데이터 관리·업무 생산성 혁신 프로세스를 추진 중.
+      </p>
+      <div class="project-result">
+        <strong>AI × 실무</strong>
+        AI 기반 업무 자동화 내재화 시도 · 현재 베타 검증 진행 중
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">수상 및 글로벌 활동</h2>
+  </div>
+  <div class="awards-list">
+    <div class="award-item">
+      <div class="award-year">2025</div>
+      <div>
+        <div class="award-name">서울영상광고제 심사위원 특별상</div>
+        <div class="award-campaign">동서식품 카누 호환캡슐 캠페인</div>
+      </div>
+      <div class="award-badge">Seoul Film Ad</div>
+    </div>
+    <div class="award-item">
+      <div class="award-year">2021</div>
+      <div>
+        <div class="award-name">한국광고학회 제28회 올해의 광고상 금상</div>
+        <div class="award-campaign">맥도날드 '2020 빅맥송' 캠페인</div>
+      </div>
+      <div class="award-badge">KAA Gold</div>
+    </div>
+    <div class="award-item">
+      <div class="award-year">2021</div>
+      <div>
+        <div class="award-name">서울영상광고제 Craft 부문 은상 + TV 파이널리스트</div>
+        <div class="award-campaign">맥도날드 '디테일의 차이가 버거의 차이' 캠페인, 드라이브 스루 '언제나 가까이' 캠페인</div>
+      </div>
+      <div class="award-badge">Seoul Film Ad</div>
+    </div>
+    <div class="award-item">
+      <div class="award-year">2019</div>
+      <div>
+        <div class="award-name">Publicis Groupe 'You-Xplore' 글로벌 인재 교환 프로그램 선발</div>
+        <div class="award-campaign">퍼블리시스 미국 시애틀 오피스 근무 · REI·T-Mobile·스타벅스 AE 실무진과 글로벌 마케팅 전략 교류</div>
+      </div>
+      <div class="award-badge">Global Exchange</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:rgba(244,245,247,0.35);">05 / CONTACT</div>
+    <p class="contact-headline">
+      14년의 집약된 경험을<br>
+      <em>함께 가치로</em><br>
+      증명하겠습니다.
+    </p>
+    <p style="font-family:var(--font);font-size:14px;color:rgba(250,251,253,0.5);line-height:1.8;margin-top:24px;">
+      C-Level 파트너십 · 메가 브랜드 광고주와 10년 이상 축적된 의사결정 경험<br>
+      360° E2E 실행력 · 대형 BX부터 360° IMC 캠페인까지 현장에서 체득한 감각<br>
+      파트너십 인게이지먼트 · 장기적 신뢰 구조를 만드는 역량
+    </p>
+  </div>
+  <div class="contact-right">
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <button class="reveal-btn" onclick="revealContact(this,'email')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        이메일 확인하기
+      </button>
+      <span class="reveal-text" id="reveal-email"><a href="mailto:chloeyi112@gmail.com">chloeyi112@gmail.com</a></span>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Mobile</div>
+      <button class="reveal-btn" onclick="revealContact(this,'phone')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6A16 16 0 0 0 15.4 16.09l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        연락처 확인하기
+      </button>
+      <span class="reveal-text" id="reveal-phone"><a href="tel:010-9369-9601">010-9369-9601</a></span>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">현재 소속</div>
+      <div class="contact-value">제일기획 Sr. Account Manager</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">학력</div>
+      <div class="contact-value" style="font-size:15px;">국민대학교 광고학 심화전공 / 언론학 부전공</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 이진영 — Brand Marketing Strategist</p>
+  <p>Seoul, Korea</p>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button id="scroll-top" aria-label="맨 위로" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.exp-item, .project-card').forEach(el => observer.observe(el));
+
+  // Stagger project cards
+  document.querySelectorAll('.project-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.1}s`;
+  });
+
+  // Scroll to top button
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Contact reveal
+  function revealContact(btn, type) {
+    const id = type === 'email' ? 'reveal-email' : 'reveal-phone';
+    const el = document.getElementById(id);
+    el.classList.add('shown');
+    btn.style.display = 'none';
+    // 이메일은 메일 앱, 전화는 전화 앱으로 바로 연결
+    const link = el.querySelector('a');
+    if (link) setTimeout(() => link.click(), 150);
+  }
+</script>
+</body>
+</html>
