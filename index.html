@@ -538,11 +538,12 @@
     /* 전역 overflow-wrap */
     * { overflow-wrap: break-word; }
 
-    /* 짧은 레이블·제목만 keep-all (본문은 normal로 자연스럽게) */
+    /* keep-all: 제목·레이블·불릿 — 한글 음절 중간 줄바꿈 방지 */
     h2, h3, h4, .award-name, .award-campaign,
-    .exp-company, .contact-value { word-break: keep-all; }
-    .exp-bullets li, .project-desc,
-    .strength-desc { word-break: normal; }
+    .exp-company, .contact-value,
+    .exp-bullets li { word-break: keep-all; }
+    /* 긴 본문만 normal (자연 흐름) */
+    .project-desc, .strength-desc { word-break: normal; }
 
     /* Hero eyebrow letter-spacing 줄이기 */
     .hero-eyebrow { letter-spacing: 0.08em; }
@@ -550,9 +551,8 @@
     /* 브랜드 태그와 stats 카드 사이 간격 */
     .hero-brands { margin-bottom: 32px; }
 
-    /* 강제 <br> 무시: 모바일에서는 자연스럽게 흐르도록 */
-    .project-title br,
-    .contact-desc br { display: none; }
+    /* 프로젝트 제목 <br> 숨기기 (HTML에서 앞에 공백 보존) */
+    .project-title br { display: none; }
   }
 
   @media (max-width: 480px) {
@@ -774,7 +774,7 @@
         </div>
         <ul class="exp-bullets">
           <li>LG생활건강 더페이스샵 기초/색조 제품 IMC 및 브랜딩 기획 — TVC, 지면 광고, 애드버토리얼 기획·제작</li>
-          <li>기아자동차 K7, K9 프리미엄 라인업 SBS 8 뉴스 맞춤형 미디어 믹스 광고 제작</li>
+          <li>기아자동차 K7, K9 프리미엄 라인업 SBS&nbsp;8&nbsp;뉴스 맞춤형 미디어 믹스 광고 제작</li>
           <li>E1 '대한민국 LPG' 통합 기업 PR 캠페인 기획 및 브랜드 모델 김연아 활용 디지털 바이럴 콘텐츠</li>
         </ul>
       </div>
@@ -794,7 +794,7 @@
     <div class="project-card">
       <div class="project-num">PROJECT 01</div>
       <div class="project-client">동서식품 카누</div>
-      <h3 class="project-title">대형 BX 공간 설계 · 복합<br>페스티벌 오퍼레이션 E2E</h3>
+      <h3 class="project-title">대형 BX 공간 설계 · 복합 <br>페스티벌 오퍼레이션 E2E</h3>
       <p class="project-desc">
         카누 하우스, 카누 바리스타 챔피언십, 워케이션 카페 등 마스터브랜드 세계관 기반 타깃별 공간을 기획하고 온·오프라인 복합 오퍼레이션을 리드. 실시간 라이브 스트리밍 송출까지 통합 운영.
       </p>
@@ -807,7 +807,7 @@
     <div class="project-card">
       <div class="project-num">PROJECT 02</div>
       <div class="project-client">동서식품 카누</div>
-      <h3 class="project-title">소비자 인사이트 기반<br>세일즈 내러티브 개발</h3>
+      <h3 class="project-title">소비자 인사이트 기반 <br>세일즈 내러티브 개발</h3>
       <p class="project-desc">
         신제품 출시 전 소비자 연상 맥락조사 데이터의 다각적 분석을 통해 핵심 갭 발견. 맛을 연상시키는 오감 표현 중심으로 투 트랙 커뮤니케이션 전략 및 9개 카테고리 공감각적 내러티브 가이드라인 설계. 디지털 커머스 채널 상세페이지까지 반영.
       </p>
@@ -820,7 +820,7 @@
     <div class="project-card">
       <div class="project-num">PROJECT 03</div>
       <div class="project-client">한국 맥도날드</div>
-      <h3 class="project-title">인사이트 기반 캠페인으로<br>브랜드 호감과 매출을 동시에</h3>
+      <h3 class="project-title">인사이트 기반 캠페인으로 <br>브랜드 호감과 매출을 동시에</h3>
       <p class="project-desc">
         소셜 리스닝과 정성 리서치로 시즌별 트렌드·경쟁 환경·소비자 관찰 데이터를 교차 분석해 캠페인 Core Idea를 정의. TVC(ATL)·디지털·소셜·소비자 참여형 캠페인을 단일 내러티브로 관통하는 채널별 콘텐츠를 설계하고, 전 카테고리 플랫폼 캠페인을 리드. 소비자 인사이트 기반의 선제적 전략 제안이 실제 캠페인으로 이어지면서 광고주의 마케팅 전략 수립 단계부터 참여하는 파트너 관계로 발전.
       </p>
@@ -833,7 +833,7 @@
     <div class="project-card">
       <div class="project-num">PROJECT 04</div>
       <div class="project-client">제일기획 (사내 혁신)</div>
-      <h3 class="project-title">AI 기반 실무 자동화 앱 개발 &<br>사내 TF 참여</h3>
+      <h3 class="project-title">AI 기반 실무 자동화 앱 개발 & <br>사내 TF 참여</h3>
       <p class="project-desc">
         대행사–파트너사 간 비즈니스 운영 효율화와 데이터 자산화를 위한 AI 컨택트리포팅 앱 개발 중. 생성형 AI 기술을 접목한 자동화 툴 설계 및 사내 TF 참여. 실무 프로세스 최적화 가능성을 검증하고 시스템 기반 데이터 관리·업무 생산성 혁신 프로세스를 추진 중.
       </p>
