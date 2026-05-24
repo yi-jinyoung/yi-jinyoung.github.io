@@ -530,17 +530,29 @@
     /* Footer */
     footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
 
-    /* 텍스트 밀림 방지: 그리드 셀이 내용 크기로 늘어나지 않도록 */
+    /* 그리드 셀 overflow 방지 */
     .exp-content, .exp-meta,
     .award-item > div,
     .project-card { min-width: 0; }
 
-    /* 줄바꿈 전역 처리 */
+    /* 전역 overflow-wrap */
     * { overflow-wrap: break-word; }
-    p, li, h2, h3, h4,
-    .award-name, .award-campaign,
-    .exp-company, .contact-value,
-    .exp-bullets li { word-break: keep-all; }
+
+    /* 짧은 레이블·제목만 keep-all (본문은 normal로 자연스럽게) */
+    h2, h3, h4, .award-name, .award-campaign,
+    .exp-company, .contact-value { word-break: keep-all; }
+    .exp-bullets li, .project-desc,
+    .strength-desc { word-break: normal; }
+
+    /* Hero eyebrow letter-spacing 줄이기 */
+    .hero-eyebrow { letter-spacing: 0.08em; }
+
+    /* 브랜드 태그와 stats 카드 사이 간격 */
+    .hero-brands { margin-bottom: 32px; }
+
+    /* 강제 <br> 무시: 모바일에서는 자연스럽게 흐르도록 */
+    .project-title br,
+    .contact-desc br { display: none; }
   }
 
   @media (max-width: 480px) {
@@ -885,7 +897,7 @@
       <em>함께 가치로</em><br>
       증명하겠습니다.
     </p>
-    <p style="font-family:var(--font);font-size:14px;color:rgba(250,251,253,0.5);line-height:1.8;margin-top:24px;">
+    <p class="contact-desc" style="font-family:var(--font);font-size:14px;color:rgba(250,251,253,0.5);line-height:1.8;margin-top:24px;">
       C-Level 파트너십 · 메가 브랜드 광고주와 10년 이상 축적된 의사결정 경험<br>
       360° E2E 실행력 · 대형 BX부터 360° IMC 캠페인까지 현장에서 체득한 감각<br>
       파트너십 인게이지먼트 · 장기적 신뢰 구조를 만드는 역량
@@ -921,7 +933,6 @@
 
 <footer>
   <p>© 2026 이진영 — Brand Marketing Strategist</p>
-  <p>Seoul, Korea</p>
 </footer>
 
 <!-- SCROLL TO TOP -->
