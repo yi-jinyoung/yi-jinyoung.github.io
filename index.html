@@ -61,6 +61,27 @@
   }
   .nav-links a:hover { color: var(--accent); }
 
+  /* ── HAMBURGER ── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
@@ -452,27 +473,78 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { gap: 16px; }
+    /* Nav: 햄버거 메뉴 */
+    nav { padding: 16px 24px; position: fixed; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+      box-shadow: 0 8px 24px rgba(28,37,43,0.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 16px 24px;
+      font-size: 13px;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* Hero */
     #hero { grid-template-columns: 1fr; }
     .hero-left { padding: 48px 24px; border-right: none; }
-    .hero-right { padding: 48px 24px; }
+    .hero-right { padding: 32px 24px 48px; }
+
+    /* Strengths: 5개 → 2열, 마지막 홀수 항목 전체 너비 */
     #strengths .strengths-grid { grid-template-columns: 1fr 1fr; }
-    .strength-item:nth-child(2) { border-right: none; }
-    .strength-item { border-bottom: 1px solid var(--rule); }
-    .exp-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 24px; }
+    .strength-item { border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+    .strength-item:nth-child(even) { border-right: none; }
+    .strength-item:last-child:nth-child(odd) { grid-column: 1 / -1; border-right: none; }
+    .strength-item:last-child { border-bottom: none; }
+
+    /* Experience */
     .section-header { padding: 32px 24px 20px; }
+    .tag-legend { padding: 16px 24px; }
     #experience .exp-list { padding: 0 24px; }
+    .exp-item { grid-template-columns: 1fr; gap: 12px; padding: 32px 24px; }
+
+    /* Projects */
     #projects .projects-grid { grid-template-columns: 1fr; }
-    .project-card { border-right: none !important; }
+    .project-card { border-right: none !important; padding: 40px 24px; }
+    .project-card:nth-child(3), .project-card:nth-child(4) { border-bottom: 1px solid var(--rule); }
     .project-card:last-child { border-bottom: none; }
+
+    /* Awards */
     #awards .awards-list { padding: 0 24px; }
-    .award-item { grid-template-columns: 60px 1fr; }
+    .award-item { grid-template-columns: 56px 1fr; gap: 20px; }
     .award-badge { display: none; }
+
+    /* Contact */
     #contact { grid-template-columns: 1fr; }
     .contact-left { padding: 48px 24px; }
-    .contact-right { padding: 48px 24px; }
+    .contact-right { padding: 40px 24px 48px; }
+
+    /* Footer */
     footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-name { font-size: clamp(48px, 13vw, 64px); }
+    .hero-subtitle { font-size: 15px; }
+    .hero-cta { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .stat-box { padding: 20px 16px; }
+    .stat-num { font-size: 36px; }
+    .stat-num[style] { font-size: 28px !important; }
+    .section-title { font-size: 26px; }
+    .strength-item { padding: 28px 20px; }
+    .strength-rank { font-size: 24px; }
+    .exp-company { font-size: 18px; }
+    .project-card { padding: 32px 20px; }
+    .project-title { font-size: 19px; }
+    .contact-headline { font-size: clamp(24px, 7vw, 36px); }
   }
 </style>
 </head>
@@ -481,7 +553,10 @@
 <!-- NAV -->
 <nav>
   <div class="nav-name">이진영</div>
-  <div class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
     <a href="#strengths">강점</a>
     <a href="#experience">경력</a>
     <a href="#projects">프로젝트</a>
@@ -863,6 +938,20 @@
   const scrollBtn = document.getElementById('scroll-top');
   window.addEventListener('scroll', () => {
     scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Hamburger menu
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
   });
 
   // Contact reveal
