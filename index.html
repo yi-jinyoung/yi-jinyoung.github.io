@@ -471,29 +471,6 @@
   ::-webkit-scrollbar-track { background: var(--paper); }
   ::-webkit-scrollbar-thumb { background: var(--ink); }
 
-  /* ── ACCORDION ── */
-  .exp-toggle {
-    display: flex; align-items: center; gap: 8px;
-    background: none; border: none; border-top: 1px solid var(--rule);
-    cursor: pointer; padding: 14px 0 0; margin-top: 16px; width: 100%;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--mid);
-    transition: color 0.2s;
-  }
-  .exp-toggle:hover { color: var(--accent); }
-  .exp-toggle svg {
-    width: 14px; height: 14px; flex-shrink: 0; margin-left: auto;
-    transition: transform 0.35s ease;
-  }
-  .exp-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
-  .exp-bullets-wrap {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.35s ease;
-  }
-  .exp-bullets-wrap.open { grid-template-rows: 1fr; }
-  .exp-bullets-wrap .exp-bullets { overflow: hidden; }
-
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     /* Nav: 햄버거 메뉴 */
@@ -606,6 +583,7 @@
   <div class="nav-links" id="nav-links">
     <a href="#strengths">강점</a>
     <a href="#experience">경력</a>
+    <a href="#projects">프로젝트</a>
     <a href="#awards">수상</a>
     <a href="#contact">연락처</a>
   </div>
@@ -723,11 +701,6 @@
           <span class="exp-tag tag-content">PPL·Branded Content</span>
           <span class="exp-tag tag-digital">GEO Strategy</span>
         </div>
-        <button class="exp-toggle" aria-expanded="false">
-          <span class="toggle-label">상세 보기</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="exp-bullets-wrap">
         <ul class="exp-bullets">
           <li>마스터브랜드 캠페인 연계 및 마케팅 비즈니스 로드맵 방향 설정을 위한 워크샵 수행</li>
           <li>대형 팝업(카누 하우스) 및 카누 바리스타 챔피언십 등 복합 BX 공간 기획·운영 End-to-End 리드</li>
@@ -736,7 +709,6 @@
           <li>AI 검색 환경 변화에 대응하는 브랜드 GEO 전략 구축 및 검색 접점 관리</li>
           <li>실무 생산성 혁신을 위한 AI 기반 앱 기획 및 사내 TF 베타 테스트 진행</li>
         </ul>
-        </div>
       </div>
     </div>
 
@@ -755,11 +727,6 @@
           <span class="exp-tag tag-experience">Olympic Sponsorship</span>
           <span class="exp-tag tag-strategy">ESG Marketing</span>
         </div>
-        <button class="exp-toggle" aria-expanded="false">
-          <span class="toggle-label">상세 보기</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="exp-bullets-wrap">
         <ul class="exp-bullets">
           <li>빅맥송, 베스트 버거, 맥런치 등 핵심 제품 전 카테고리 플랫폼 캠페인 리드</li>
           <li>'행운버거' 사회공헌 캠페인 전환 제안으로 Brand Affinity 제고와 매출 성장을 동시에 견인</li>
@@ -767,7 +734,6 @@
           <li>2018 평창 동계 올림픽 공식 스폰서십 가이드라인 관리 및 IOC·OBS 커뮤니케이션 다이렉트 담당</li>
           <li>맥도날드 Asian Business Unit 리뷰를 위한 국/영문 카피라이팅 번역, 영문 리포트 작성</li>
         </ul>
-        </div>
       </div>
     </div>
 
@@ -784,17 +750,11 @@
           <span class="exp-tag tag-digital">Digital</span>
           <span class="exp-tag tag-campaign">New Business</span>
         </div>
-        <button class="exp-toggle" aria-expanded="false">
-          <span class="toggle-label">상세 보기</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="exp-bullets-wrap">
         <ul class="exp-bullets">
           <li>한국투자증권 뱅키스 브랜드 중장기 캠페인 전략 및 TVC '서른살의 플랜B' 기획</li>
           <li>코스메데코르테 리포솜 미라클 캠페인 — 마이크로 사이트 기획 및 대규모 디지털 샘플링 프로모션</li>
           <li>캐논 코리아, 우리카드 등 신규 광고주 경쟁 Pitch 수주</li>
         </ul>
-        </div>
       </div>
     </div>
 
@@ -812,17 +772,74 @@
           <span class="exp-tag tag-content">Media Mix</span>
           <span class="exp-tag tag-strategy">Brand Identity</span>
         </div>
-        <button class="exp-toggle" aria-expanded="false">
-          <span class="toggle-label">상세 보기</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="exp-bullets-wrap">
         <ul class="exp-bullets">
           <li>LG생활건강 더페이스샵 기초/색조 제품 IMC 및 브랜딩 기획 — TVC, 지면 광고, 애드버토리얼 기획·제작</li>
           <li>기아자동차 K7, K9 프리미엄 라인업 SBS&nbsp;8&nbsp;뉴스 맞춤형 미디어 믹스 광고 제작</li>
           <li>E1 '대한민국 LPG' 통합 기업 PR 캠페인 기획 및 브랜드 모델 김연아 활용 디지털 바이럴 콘텐츠</li>
         </ul>
-        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KEY PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">핵심 프로젝트</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 01</div>
+      <div class="project-client">동서식품 카누</div>
+      <h3 class="project-title">대형 BX 공간 설계 · 복합 <br>페스티벌 오퍼레이션 E2E</h3>
+      <p class="project-desc">
+        카누 하우스, 카누 바리스타 챔피언십, 워케이션 카페 등 마스터브랜드 세계관 기반 타깃별 공간을 기획하고 온·오프라인 복합 오퍼레이션을 리드. 실시간 라이브 스트리밍 송출까지 통합 운영.
+      </p>
+      <div class="project-result">
+        <strong>KPI 45%+ 초과 달성</strong>
+        3회 연속 개최로 브랜드 연례 플랫폼화 — 시즌마다 브랜드에 생동감을 불어넣는 고정 접점으로 자리잡음. 챔피언십 실시간 최고 동시 접속자 2개년 합산 22,528명.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 02</div>
+      <div class="project-client">동서식품 카누</div>
+      <h3 class="project-title">소비자 인사이트 기반 <br>세일즈 내러티브 개발</h3>
+      <p class="project-desc">
+        신제품 출시 전 소비자 연상 맥락조사 데이터의 다각적 분석을 통해 핵심 갭 발견. 맛을 연상시키는 오감 표현 중심으로 투 트랙 커뮤니케이션 전략 및 9개 카테고리 공감각적 내러티브 가이드라인 설계. 디지털 커머스 채널 상세페이지까지 반영.
+      </p>
+      <div class="project-result">
+        <strong>Data → Story</strong>
+        추상적 브랜드 가치를 광고주가 납득할 수 있는 구조화된 메시지 계층으로 설계
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 03</div>
+      <div class="project-client">한국 맥도날드</div>
+      <h3 class="project-title">인사이트 기반 캠페인으로 <br>브랜드 호감과 매출을 동시에</h3>
+      <p class="project-desc">
+        소셜 리스닝과 정성 리서치로 시즌별 트렌드·경쟁 환경·소비자 관찰 데이터를 교차 분석해 캠페인 Core Idea를 정의. TVC(ATL)·디지털·소셜·소비자 참여형 캠페인을 단일 내러티브로 관통하는 채널별 콘텐츠를 설계하고, 전 카테고리 플랫폼 캠페인을 리드. 소비자 인사이트 기반의 선제적 전략 제안이 실제 캠페인으로 이어지면서 광고주의 마케팅 전략 수립 단계부터 참여하는 파트너 관계로 발전.
+      </p>
+      <div class="project-result">
+        <strong>Brand + Sales 동시 성과</strong>
+        '행운버거' 사회공헌 캠페인 전환 제안으로 Brand Affinity 제고와 매출 성장을 함께 견인. 브랜드 이미지와 비즈니스 목표를 하나의 전략으로 연결한 사례.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 04</div>
+      <div class="project-client">제일기획 (사내 혁신)</div>
+      <h3 class="project-title">AI 기반 실무 자동화 앱 개발 & <br>사내 TF 참여</h3>
+      <p class="project-desc">
+        대행사–파트너사 간 비즈니스 운영 효율화와 데이터 자산화를 위한 AI 컨택트리포팅 앱 개발 중. 생성형 AI 기술을 접목한 자동화 툴 설계 및 사내 TF 참여. 실무 프로세스 최적화 가능성을 검증하고 시스템 기반 데이터 관리·업무 생산성 혁신 프로세스를 추진 중.
+      </p>
+      <div class="project-result">
+        <strong>AI × 실무</strong>
+        AI 기반 업무 자동화 내재화 시도 · 현재 베타 검증 진행 중
       </div>
     </div>
 
@@ -832,7 +849,7 @@
 <!-- AWARDS -->
 <section id="awards">
   <div class="section-header">
-    <span class="section-num">03</span>
+    <span class="section-num">04</span>
     <h2 class="section-title">수상 및 글로벌 활동</h2>
   </div>
   <div class="awards-list">
@@ -874,7 +891,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-left">
-    <div style="font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:rgba(244,245,247,0.35);">04 / CONTACT</div>
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:rgba(244,245,247,0.35);">05 / CONTACT</div>
     <p class="contact-headline">
       14년의 집약된 경험을<br>
       <em>함께 가치로</em><br>
@@ -944,17 +961,6 @@
   const scrollBtn = document.getElementById('scroll-top');
   window.addEventListener('scroll', () => {
     scrollBtn.classList.toggle('visible', window.scrollY > 400);
-  });
-
-  // Experience accordion
-  document.querySelectorAll('.exp-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const wrap = btn.nextElementSibling;
-      const isOpen = wrap.classList.contains('open');
-      wrap.classList.toggle('open', !isOpen);
-      btn.setAttribute('aria-expanded', String(!isOpen));
-      btn.querySelector('.toggle-label').textContent = isOpen ? '상세 보기' : '접기';
-    });
   });
 
   // Hamburger menu
