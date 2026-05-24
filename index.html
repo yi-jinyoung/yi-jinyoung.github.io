@@ -529,6 +529,18 @@
 
     /* Footer */
     footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+
+    /* 텍스트 밀림 방지: 그리드 셀이 내용 크기로 늘어나지 않도록 */
+    .exp-content, .exp-meta,
+    .award-item > div,
+    .project-card { min-width: 0; }
+
+    /* 줄바꿈 전역 처리 */
+    * { overflow-wrap: break-word; }
+    p, li, h2, h3, h4,
+    .award-name, .award-campaign,
+    .exp-company, .contact-value,
+    .exp-bullets li { word-break: keep-all; }
   }
 
   @media (max-width: 480px) {
