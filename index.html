@@ -544,9 +544,10 @@
       border-top: 1px solid var(--rule);
     }
 
-    /* Hero: min-height 제거로 버튼 밀림 방지 */
-    #hero { grid-template-columns: 1fr; min-height: auto; }
+    /* Hero: 100vh 제거, 콘텐츠 높이로만 */
+    #hero { grid-template-columns: 1fr; min-height: 0; height: auto; align-items: start; }
     .hero-left { padding: 48px 24px 40px; border-right: none; justify-content: flex-start; }
+    .hero-cta { margin-top: 28px; }
     .hero-right { padding: 32px 24px 48px; }
 
     /* Strengths: 5개 → 2열, 마지막 홀수 항목 전체 너비 */
@@ -609,8 +610,8 @@
     .strength-name { font-size: 13px; }
     .strength-desc { font-size: 12px; }
 
-    /* 프로젝트 제목 overflow 방지 (카드 overflow:hidden에 의한 잘림 방지) */
-    .project-title { word-break: break-word; overflow-wrap: anywhere; }
+    /* 프로젝트 제목 overflow 방지 */
+    .project-title { word-break: break-all; overflow-wrap: anywhere; }
 
     /* Contact 설명 keep-all 적용 */
     .contact-props li { word-break: keep-all; overflow-wrap: break-word; }
@@ -624,7 +625,11 @@
     .stat-num { font-size: 36px; }
     .stat-num[style] { font-size: 28px !important; }
     .section-title { font-size: 26px; }
-    .strength-item { padding: 28px 20px; }
+
+    /* 강점: 1열로 전환 (2열 좁아서 텍스트 잘림) */
+    #strengths .strengths-grid { grid-template-columns: 1fr; }
+    .strength-item { border-right: none !important; padding: 28px 24px; }
+    .strength-item:last-child { border-bottom: none; }
     .strength-rank { font-size: 24px; }
     .exp-company { font-size: 18px; }
     .project-card { padding: 32px 20px; }
