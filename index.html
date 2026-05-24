@@ -633,12 +633,11 @@
     .strength-rank { font-size: 24px; }
     /* 강점 폰트: 1열이므로 원래 크기로 복원 */
     .strength-name { font-size: 15px; }
-    .strength-desc { font-size: 14px; }
+    .strength-desc { font-size: 14px; word-break: keep-all; }
     .exp-company { font-size: 18px; }
-    /* 프로젝트 카드: 1열 전체폭이므로 overflow 해제 */
-    .project-card { padding: 32px 20px; overflow: visible; }
+    .project-card { padding: 32px 20px; }
     .project-title { font-size: 19px; }
-    .project-desc { word-break: keep-all; }
+    .project-desc { word-break: keep-all; overflow-wrap: anywhere; }
     .contact-headline { font-size: clamp(24px, 7vw, 36px); }
   }
 </style>
